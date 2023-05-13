@@ -5,6 +5,7 @@ services:
     build:
       context: node-app
     container_name: node-app
+    entrypoint: dockerize -wait tcp://db:3306 -timeout 50s node index
     networks:
       - desafionet
     tty: true
@@ -14,7 +15,7 @@ services:
   nginx-app:
     build:
       context: nginx-app
-    container_name: nginx-app
+    container_name: nginx-app    
     networks:
       - desafionet
     tty: true
